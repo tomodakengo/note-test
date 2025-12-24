@@ -9,7 +9,7 @@ on:
 permissions:
   contents: read
   pages: write
-  id-token: write
+  
 
 jobs:
   test:
@@ -46,5 +46,13 @@ jobs:
         path: ${{ env.REPORT_DIR }}/
         retention-days: 7
     
+    - name: Setup Pages
+        uses: actions/configure-pages@v5
+    
+    - name: Upload Artifacts to GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ env.REPORT_DIR }}/
+
     - name: Deploy to GitHub Pages
       uses: actions/deploy-pages@v4
